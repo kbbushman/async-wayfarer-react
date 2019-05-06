@@ -31,7 +31,7 @@ const Register = ({ history }) => {
     const userData = { name, email, city, password, password2 };
     
     try {
-      await axios.post(`${process.env.REACT_APP_API}/auth/register`, userData);
+      await axios.post(`${process.env.REACT_APP_API}/auth/register`, userData, {withCredentials: true});
       history.push('/login');
     } catch (err) {
       setErrors(err.response.data.errors);
