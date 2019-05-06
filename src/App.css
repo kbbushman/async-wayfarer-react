@@ -1,33 +1,237 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: sans-serif;
+  color: #333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h1,
+h2,
+h3 {
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form {
+  max-width: 600px;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 0 0 15px;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 300px;
+}
+
+input[type="submit"] {
+  display: block;
+  background: steelblue;
+  width: auto;
+  padding: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  float: right;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: skyblue;
+
+}
+
+button {
+  background: steelblue;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: skyblue;
+}
+
+.delete {
+  background: lightcoral;
+  margin-right: 5px;
+}
+
+.delete:hover {
+  background: red;
+}
+
+.cancel {
+  background: #ccc;
+  margin-right: 5px;
+}
+
+.cancel:hover {
+  background: #777;
+  margin-right: 10px;
+}
+
+.button-group {
+  width: 100%;
+  overflow: hidden;
+}
+
+.right {
+  float: right;
+}
+
+
+/* NAVIGATION */
+
+nav {
+  padding: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+nav ul {
+  float: right;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+nav li:last-child {
+  margin-right: 0;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+}
+
+nav a.active {
+  padding-bottom: 4px;
+  border-bottom: 2px solid #ccc;
+}
+
+nav span {
+  cursor: pointer;
+}
+
+section {
+  max-width: 980px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+
+/* USER PROFILE */
+
+.user-profile {
+  margin-bottom: 60px;
+}
+
+.user-profile .button-group {
+  max-width: 120px;
+  margin-bottom: 20px;
+}
+
+.user-profile section {
+  margin-bottom: 60px;
+}
+
+
+/* CITIES */
+
+.cities-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: row;
+
 }
 
-.App-link {
-  color: #61dafb;
+.cities-sidebar {
+  background: #777;
+  max-width: 33%;
+  height: 100%;
+  padding: 20px 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cities-sidebar .active {
+  background-color: steelblue;
+  color: #fff;
+}
+
+.city-link {
+  display: block;
+  background-color: #fff;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.city-container {
+  width: 80%;
+  padding: 20px 40px;
+}
+
+.city-container h2 {
+  margin-bottom: 5px;
+}
+
+.city-container h3 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.city-container article {
+  margin-bottom: 40px;
+}
+
+article h4 {
+  margin-bottom: 10px;
+}
+
+small {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.new-post-button {
+  overflow: hidden;
+}
+
+.new-post-button button {
+  background: green;
+  margin-bottom: 40px;
+  font-size: 16px;
+  float: right;
+}
+
+.new-post-button button:hover {
+  background: limegreen;
 }
