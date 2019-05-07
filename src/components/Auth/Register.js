@@ -7,7 +7,7 @@ const Register = ({ history }) => {
   const [ city, setCity ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ password2, setPassword2 ] = useState('');
-  const [ errors, setErrors ] = useState(null);
+  const [ errors, setErrors ] = useState([]);
 
   const handleChange = event => {
     switch(event.target.name) {
@@ -34,13 +34,14 @@ const Register = ({ history }) => {
       await axios.post(`${process.env.REACT_APP_API}/auth/register`, userData, {withCredentials: true});
       history.push('/login');
     } catch (err) {
+      console.log(err.response.data.errors)
       setErrors(err.response.data.errors);
     }
   };
 
   return (
     <section className="form">
-      <div>{errors ? errors.map(error => `${error.message}. `) : null}</div>
+      <div>{errors ? errors.map(error => `${error.message}. `) : errors}</div>
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="name" placeholder="Name" value={name} onChange={handleChange} autoFocus={true} />

@@ -21,8 +21,7 @@ const App = ({ history, cookies }) => {
   const handleLogout = async () => {
     if (localStorage.user && window.confirm('I\'m sorry Dave. I can\'t let you do that...')) {
       localStorage.removeItem('user');
-      const response = await axios.post(`${process.env.REACT_APP_API}/auth/logout`, {withCredentials: true});
-      console.log(response);
+      await axios.post(`${process.env.REACT_APP_API}/auth/logout`, {withCredentials: true});
       setCurrentUser(null);
       // cookies.remove('wsid');
       history.push('/login');

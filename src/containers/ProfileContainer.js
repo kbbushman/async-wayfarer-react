@@ -16,7 +16,6 @@ const ProfileContainer = ({ currentUser, match }) => {
         // FETCH EXAMPLE
         // const response = await fetch(`${process.env.REACT_APP_API}/auth/users`, { method: 'GET', credentials: 'include' });
         // const data = await response.json();
-        console.log(response);
         setUser(response.data.user);
         setUserPosts(response.data.posts);
       } catch (err) {

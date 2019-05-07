@@ -13,6 +13,7 @@ const CityContainer = ({ currentUser, currentCity, match }) => {
       try {
         console.log('GETTING CITY POSTS...');
         const result = await axios.get(`${process.env.REACT_APP_API}/cities/${match.params.cityId}/posts`, { withCredentials: true });
+        console.log(result.data)
         setCityPosts(result.data);
       } catch (err) {
         console.log(err);

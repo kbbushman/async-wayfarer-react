@@ -36,7 +36,6 @@ const Login = ({ setCurrentUser, history }) => {
       //   body: JSON.stringify(userData)
       // });
 
-      console.log(response);
       const userId = response.data.userId;
       localStorage.user = userId;
       setCurrentUser(userId);
