@@ -36,6 +36,7 @@ const NewPostModal = ({ open, setOpenModal, addNewPost, setError, match }) => {
       addNewPost(response.data);
     } catch (err) {
       console.log(err);
+      setOpenModal(false);
       setError(err.response.data.errors);
     }
   }

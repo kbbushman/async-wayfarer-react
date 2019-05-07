@@ -9,7 +9,7 @@ const Post = ({ post, titleOnly, showButtons, deletePost, currentUser }) => {
         ? <><small><strong>By:</strong> <Link to={`/profile/${post.userId._id}`}>{post.userId.name}</Link></small>
           <p>{post.body}</p></>
         : null}
-        {showButtons && currentUser === post.userId._id
+        {showButtons // && currentUser === post.userId._id
           ? <div className='button-group'>
               <button className='right'>Edit</button>
               <button className='delete right' onClick={() => deletePost(post._id)}>Delete</button>

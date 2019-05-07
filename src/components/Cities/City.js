@@ -27,11 +27,15 @@ const City = ({ currentUser, currentCity, match }) => {
     if (window.confirm('You sure about that...?')) {
       try {
         console.log('DELETING CITY POSTS...');
-        await axios.delete(`${process.env.REACT_APP_API}/posts/${postId}`, { withCredentials: true });
+        const response = await axios.delete(`${process.env.REACT_APP_API}/posts/${postId}`, { withCredentials: true });
         const updatedPosts = cityPosts.filter(post => post._id !== postId);
         setCityPosts(updatedPosts);
       } catch (err) {
-        console.log(err);
+        console.log(err.response);
+        if (err.response.status === 401) {
+          return setError('You do not have permission to delete this post');
+        }
+        setError(err.response.statusText);
       }
     }
   };

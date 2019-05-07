@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import City from '../components/Cities/City';
-// import NewPostModal from '../Posts/NewPostModal';
-// import Posts from '../Posts/Posts';
+import NewPostModal from '../components/Posts/NewPostModal';
+import Posts from '../components/Posts/Posts';
 
-const CityContainer = ({ currentUser, currentCity, setCurrentCity, match }) => {
+const City = ({ currentUser, currentCity, match }) => {
   const [ cityPosts, setCityPosts ] = useState([]);
-  // const [ currentCity, setCurrentCity ] = useState({});
   const [ openModal, setOpenModal ] = useState(false);
   const [ error, setError ] = useState(null);
-  // const cityId = location.pathname.split('/')[2];
-  const cityId = match.params.cityId;
 
   useEffect(() => {
     const getCityPosts = async () => {
@@ -18,14 +14,12 @@ const CityContainer = ({ currentUser, currentCity, setCurrentCity, match }) => {
         console.log('GETTING CITY POSTS...');
         const result = await axios.get(`${process.env.REACT_APP_API}/cities/${match.params.cityId}/posts`, { withCredentials: true });
         setCityPosts(result.data);
-        cityId ? setCurrentCity(result.data.find(city => city._id === cityId)) : setCurrentCity(result.data[0]);
       } catch (err) {
         console.log(err);
       }
     };
 
     getCityPosts();
-    // cityId ? setCurrentCity(result.data.find(city => city._id === cityId)) : setCurrentCity(result.data[0]);
   }, [match.params.cityId]);
 
 
@@ -33,11 +27,15 @@ const CityContainer = ({ currentUser, currentCity, setCurrentCity, match }) => {
     if (window.confirm('You sure about that...?')) {
       try {
         console.log('DELETING CITY POSTS...');
-        await axios.delete(`${process.env.REACT_APP_API}/posts/${postId}`, { withCredentials: true });
+        const response = await axios.delete(`${process.env.REACT_APP_API}/posts/${postId}`, { withCredentials: true });
         const updatedPosts = cityPosts.filter(post => post._id !== postId);
         setCityPosts(updatedPosts);
       } catch (err) {
-        console.log(err);
+        console.log(err.response);
+        if (err.response.status === 401) {
+          return setError('You do not have permission to delete this post');
+        }
+        setError(err.response.statusText);
       }
     }
   };
@@ -51,7 +49,16 @@ const CityContainer = ({ currentUser, currentCity, setCurrentCity, match }) => {
 
   const newPostButton = currentUser ? <div className='new-post-button'><button onClick={() => setOpenModal(true)}>Add New Post</button></div> : null;
 
-  return <City currentUser={currentUser} currentCity={currentCity} cityPosts={cityPosts} addNewPost={addNewPost} deletePost={deletePost} />
+  return (
+    <div className="city-container">
+      {error ? error : null}
+      <h2>{currentCity.name}</h2>
+      <h3>{currentCity.country}</h3>
+      {newPostButton}
+      <Posts posts={cityPosts} currentUser={currentUser} deletePost={deletePost} />
+      <NewPostModal match={match} open={openModal} setOpenModal={setOpenModal} setError={setError} addNewPost={addNewPost} />
+    </div>
+  );
 };
 
-export default CityContainer;
+export default City;
