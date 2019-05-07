@@ -58,8 +58,8 @@ const NewPostModal = ({ open, setOpenModal, addNewPost, setError, match }) => {
           <textarea type="textarea" name="body" onChange={handleChange} required />
         </div>
         <div className='button-group'>
-          <button type='submit'>Submit</button>
-          <button type='button' className='cancel' onClick={() => setOpenModal(false)}>Cancel</button>
+          <button type='submit' className="right">Submit</button>
+          <button type='button' className='cancel right' onClick={() => setOpenModal(false)}>Cancel</button>
         </div>
       </form>
     </Modal>

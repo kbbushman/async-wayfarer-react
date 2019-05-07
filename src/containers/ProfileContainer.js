@@ -10,11 +10,13 @@ const ProfileContainer = ({ currentUser, match }) => {
   useEffect(() => {
     const getProfile = async () => {
       try {
+        console.log('GETTING PROFILE AND POSTS...');
         const userId = match.params.userId;
         const response = await axios.get(`${process.env.REACT_APP_API}/users/${userId}`, { withCredentials: true });
         // FETCH EXAMPLE
         // const response = await fetch(`${process.env.REACT_APP_API}/auth/users`, { method: 'GET', credentials: 'include' });
         // const data = await response.json();
+        console.log(response);
         setUser(response.data.user);
         setUserPosts(response.data.posts);
       } catch (err) {
@@ -35,6 +37,7 @@ const ProfileContainer = ({ currentUser, match }) => {
         setUserPosts(updatedPosts);
       } catch (err) {
         console.log(err);
+        err && err.response ? setError(err.response.data.errors) : setError(err);
       }
     }
   };

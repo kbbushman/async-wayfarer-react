@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import CitiesSidebar from '../components/Cities/CitiesSidebar';
-// import City from '../components/Cities/City';
 import CityContainer from './CityContainer';
+// import City from '../components/Cities/City';
 
 const CitiesContainer = ({ currentUser, match, location }) => {
   const [ cities, setCities ] = useState([]);
