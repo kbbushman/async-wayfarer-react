@@ -25,7 +25,7 @@ const Login = ({ setCurrentUser, history }) => {
       // }
 
       const response = await axios.post(`${process.env.REACT_APP_API}/auth/login`, userData, { withCredentials: true });
-
+      console.log(response);
       // FETCH EXAMPLE
       // const response = await fetch(`${process.env.REACT_APP_API}/auth/login`, {
       //   method: 'POST',
@@ -36,10 +36,10 @@ const Login = ({ setCurrentUser, history }) => {
       //   body: JSON.stringify(userData)
       // });
 
-      const userId = response.data.userId;
-      localStorage.user = userId;
-      setCurrentUser(userId);
-      history.push(`/profile/${userId}`);
+      const currentUser = response.data.currentUser;
+      localStorage.user = currentUser;
+      setCurrentUser(currentUser);
+      history.push(`/profile/${currentUser}`);
     } catch (err) {
       console.log(err);
       setError(err.response.data.errors);

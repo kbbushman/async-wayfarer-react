@@ -2,6 +2,7 @@ import React from 'react';
 import Post from '../Posts/Post';
 
 const Profile = ({ currentUser, user, userPosts, error, deletePost }) => {
+  console.log('Profile Posts', userPosts)
   const signUpDate = user && `${new Date(user.sign_up_date).toLocaleDateString()} @ ${new Date(user.sign_up_date).toLocaleTimeString()}`;
   // const signUpDate =  `${new Date(user.sign_up_date).toUTCString()}`;
 

@@ -17,7 +17,7 @@ const ProfileContainer = ({ currentUser, match }) => {
         // const response = await fetch(`${process.env.REACT_APP_API}/auth/users`, { method: 'GET', credentials: 'include' });
         // const data = await response.json();
         setUser(response.data.user);
-        setUserPosts(response.data.posts);
+        setUserPosts(response.data.userPosts);
       } catch (err) {
         err && err.response ? setError(err.response.data.errors) : setError(err);
       }
@@ -36,7 +36,7 @@ const ProfileContainer = ({ currentUser, match }) => {
         setUserPosts(updatedPosts);
       } catch (err) {
         console.log(err);
-        err && err.response ? setError(err.response.data.errors) : setError(err);
+        err.response ? setError(err.response.data.error) : setError(err);
       }
     }
   };

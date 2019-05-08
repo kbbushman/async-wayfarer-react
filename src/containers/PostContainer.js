@@ -9,13 +9,14 @@ const PostContainer = ({ match }) => {
     const getPost = async () => {
       console.log('GETTING POST...')
       const result = await axios.get(`${process.env.REACT_APP_API}/posts/${match.params.postId}`, { withCredentials: true });
-      setPost(result.data.data);
+      console.log(result)
+      setPost(result.data.post);
     };
     
     getPost();
   }, [match]);
 
-  const article = post.userId ? <Post post={post} showAll={true} /> : <h2>Loading...</h2>;
+  const article = post.user_id ? <Post post={post} showAll={true} /> : <h2>Loading...</h2>;
 
   return (
     <section className='single-post'>
